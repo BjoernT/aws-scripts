@@ -39,8 +39,7 @@ if [ $nosnaps -lt $backlog ]; then
  test $RET -gt 0 && exit 1 || exit 0
 else
  lastsnap=$( let $nosnaps-1 )
- oldestTS=$( ec2-describe-snapshots --hide-tags --region $region -F
- "volume-id=$volume" | egrep -o "Backup [0-9]+ of" | egrep -o '[0-9]+' | sort | head -n1 )
+ oldestTS=$( ec2-describe-snapshots --hide-tags --region $region -F "volume-id=$volume" | egrep -o "Backup [0-9]+ of" | egrep -o '[0-9]+' | sort | head -n1 )
  snap=$( ec2-describe-snapshots --hide-tags --region $region -F "volume-id=$volume" -F "description=*${oldestTS}*" | egrep -o 'snap-[0-9A-Za-z]+' );
  deleteSnapshot $region ${snap}
  test $RET -gt 0 && exit 1
