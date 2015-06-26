@@ -27,7 +27,7 @@ def base36decode(number):
 mailfrom='bjoern@xxx'
 mailto='bjoern@xxxx'
 maildir='./mailz' #Where are my sample mails stored
-smtpserver='98.158.198.46'
+smtpserver='127.0.0.1'
 
 for dirname, dirnames, filenames in os.walk(maildir):
    for filename in filenames:
